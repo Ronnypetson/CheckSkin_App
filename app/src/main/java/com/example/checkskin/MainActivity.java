@@ -4,6 +4,7 @@ import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -126,6 +127,9 @@ public class MainActivity extends AppCompatActivity {
      * Launching camera app to capture image
      */
     private void captureImage() {
+        EditText text = (EditText)findViewById(R.id.editText);
+        com.Config c = new com.Config(text.getText().toString());
+
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
         fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);

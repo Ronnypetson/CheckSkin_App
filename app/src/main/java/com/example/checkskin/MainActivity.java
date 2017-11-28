@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     // LogCat tag
     private static final String TAG = MainActivity.class.getSimpleName();
 
+    // Permission
+    private static final int REQUEST_WRITE_PERMISSION = 786;
+
     // Camera activity request codes
     private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
     private static final int CAMERA_CAPTURE_VIDEO_REQUEST_CODE = 200;
@@ -54,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
-        
+
         setContentView(R.layout.activity_main);
 
         // Changing action bar background color
@@ -97,6 +100,13 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
     }
+
+    //@Override
+    //public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    //    if (requestCode == REQUEST_WRITE_PERMISSION && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+    //        openFilePicker();
+    //    }
+    //}
 
     /**
      * Checking device has camera hardware or not

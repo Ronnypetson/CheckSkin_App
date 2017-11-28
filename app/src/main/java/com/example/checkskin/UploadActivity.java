@@ -15,6 +15,7 @@ import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -34,9 +35,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import pub.devrel.easypermissions.EasyPermissions;
+
 public class UploadActivity extends Activity {
     // LogCat tag
     private static final String TAG = MainActivity.class.getSimpleName();
+    private String[] galleryPermissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     private ProgressBar progressBar;
     private String filePath = null;
@@ -55,6 +59,12 @@ public class UploadActivity extends Activity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         imgPreview = (ImageView) findViewById(R.id.imgPreview);
         vidPreview = (VideoView) findViewById(R.id.videoPreview);
+
+        if (!EasyPermissions.hasPermissions(this, galleryPermissions)) {
+            //pickImageFromGallery();
+            EasyPermissions.requestPermissions(this, "Access for storage",
+                    101, galleryPermissions);
+        }
 
         // Changing action bar background color
         //getActionBar().setBackgroundDrawable(
@@ -104,7 +114,15 @@ public class UploadActivity extends Activity {
             // images
             options.inSampleSize = 8;
 
-            final Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);
+            Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);
+            //if (EasyPermissions.hasPermissions(this, galleryPermissions)) {
+            //    //pickImageFromGallery();
+            //    bitmap = BitmapFactory.decodeFile(filePath, options);
+            //} else {
+            //    EasyPermissions.requestPermissions(this, "Access for storage",
+            //            101, galleryPermissions);
+            //    bitmap = BitmapFactory.decodeFile(filePath, options);
+            //}
 
             imgPreview.setImageBitmap(bitmap);
         } else {

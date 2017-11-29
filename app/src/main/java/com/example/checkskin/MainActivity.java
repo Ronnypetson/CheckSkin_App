@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Uri fileUri; // file url to store image/video
 
-    private Button btnCapturePicture, btnRecordVideo;
+    private Button btnCapturePicture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         //getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(getResources().getString(R.color.action_bar))));
 
         btnCapturePicture = (Button) findViewById(R.id.btnCapturePicture);
-        btnRecordVideo = (Button) findViewById(R.id.btnRecordVideo);
+        //btnRecordVideo = (Button) findViewById(R.id.btnRecordVideo);
 
         /**
          * Capture image button click event
@@ -83,14 +83,14 @@ public class MainActivity extends AppCompatActivity {
         /**
          * Record video button click event
          */
-        btnRecordVideo.setOnClickListener(new View.OnClickListener() {
+        //btnRecordVideo.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
+        //    @Override
+        //    public void onClick(View v) {
                 // record video
-                recordVideo();
-            }
-        });
+        //        recordVideo();
+        //    }
+        //});
 
         // Checking camera availability
         if (!isDeviceSupportCamera()) {
@@ -144,20 +144,20 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Launching camera app to record video
      */
-    private void recordVideo() {
-        Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+    //private void recordVideo() {
+    //    Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
 
-        fileUri = getOutputMediaFileUri(MEDIA_TYPE_VIDEO);
+    //    fileUri = getOutputMediaFileUri(MEDIA_TYPE_VIDEO);
 
         // set video quality
-        intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+    //    intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
 
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri); // set the image file
+    //    intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri); // set the image file
         // name
 
         // start the video capture Intent
-        startActivityForResult(intent, CAMERA_CAPTURE_VIDEO_REQUEST_CODE);
-    }
+    //    startActivityForResult(intent, CAMERA_CAPTURE_VIDEO_REQUEST_CODE);
+    //}
 
     /**
      * Here we store the file url as it will be null after returning from camera
@@ -282,9 +282,6 @@ public class MainActivity extends AppCompatActivity {
         if (type == MEDIA_TYPE_IMAGE) {
             mediaFile = new File(mediaStorageDir.getPath() + File.separator
                     + "IMG_" + timeStamp + ".jpg");
-        } else if (type == MEDIA_TYPE_VIDEO) {
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator
-                    + "VID_" + timeStamp + ".mp4");
         } else {
             return null;
         }

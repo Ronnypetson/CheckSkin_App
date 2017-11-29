@@ -24,7 +24,7 @@
             android:background="@color/btn_bg"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:text="@string/btnTakePicture"
+            android:text="Tirar foto"
             android:textColor="@color/white" />
 
         <!-- Record video button -->
@@ -40,5 +40,13 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="http://ec2-52-67-221-229.sa-east-1.compute.amazonaws.com:8000" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp" />
 
 </RelativeLayout>
